@@ -5,7 +5,12 @@ A simple python script for toggling the theme of iterm2 from where ever you want
 ### Prerequisites
 
 You will need to allow third party applications to talk to the iterm api. This can be done with cookies and security BUT the api is horribly documented thus there is no security here (Smile and wave boys).
-To do this go to `Preferences -> General -> Magic -> Toggle "Enable Python API"`
+To do this go to
+
+```
+Preferences -> General -> Magic -> Toggle "Enable Python API"
+```
+
 (because macOS and python 2.7 rip)
 
 - python3
