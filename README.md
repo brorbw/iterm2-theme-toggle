@@ -11,7 +11,8 @@ To do this go to
 Preferences -> General -> Magic -> Toggle "Enable Python API"
 ```
 
-(because macOS and python 2.7 rip)
+- iTerm2 3.3.10
+  (because macOS and python 2.7 rip)
 
 - python3
 - pip3
@@ -39,11 +40,17 @@ function toggle-theme() {
 }
 ```
 
+First time you run the script iTerm2 will prompt you for permissions to you the API. Press always, if you don't want to allow it every time
+
+<img src="https://raw.githubusercontent.com/brorbw/iterm2-theme-toggle/master/pics/image.png"/>
+
+Restart iTerm2 and you are good to go
+
 # Configuration
 
-If you need to change the themes that it toggles between you just need to change the following lines
+If you need to change the themes that it toggles between you just need to set the environment variables
 
-```python
-lightTheme = 'Nord light'
-darkTheme = 'Laserwave'
+```sh
+export LIGHT_THEME="Nord light"
+export DARK_THEME="Laserwave"
 ```

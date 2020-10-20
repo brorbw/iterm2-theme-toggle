@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
+import os
 import iterm2
 
-lightTheme = 'Nord light'
-darkTheme = 'Laserwave'
+lightTheme = os.environ.get("LIGHT_THEME") or "Light Background"
+darkTheme = os.environ.get("DARK_THEME") or "Dark Background"
+
 
 def ColorsUnequal(profile_color, preset_color):
-    return (round(profile_color.red) != round(preset_color.red) or
-            round(profile_color.green) != round(preset_color.green) or
-            round(profile_color.blue) != round(preset_color.blue) or
-            round(profile_color.alpha) != round(preset_color.alpha) or
-            profile_color.color_space != preset_color.color_space)
+    return (
+        round(profile_color.red) != round(preset_color.red)
+        or round(profile_color.green) != round(preset_color.green)
+        or round(profile_color.blue) != round(preset_color.blue)
+        or round(profile_color.alpha) != round(preset_color.alpha)
+        or profile_color.color_space != preset_color.color_space
+    )
+
 
 def ProfileUsesPreset(profile, preset):
     for preset_color in preset.values:
@@ -20,26 +25,29 @@ def ProfileUsesPreset(profile, preset):
             return False
     return True
 
+
 async def PresetForProfile(connection, profile):
-    presets=await iterm2.ColorPreset.async_get_list(connection)
+    presets = await iterm2.ColorPreset.async_get_list(connection)
     for preset_name in presets:
-        preset=await iterm2.ColorPreset.async_get(connection, preset_name)
+        preset = await iterm2.ColorPreset.async_get(connection, preset_name)
         if ProfileUsesPreset(profile, preset):
-          return preset_name
+            return preset_name
     return None
+
 
 async def main(connection):
     app = await iterm2.async_get_app(connection)
     session = app.current_terminal_window.current_tab.current_session
     profile = await session.async_get_profile()
     userPresets = await PresetForProfile(connection, profile)
-    
+
     if userPresets == lightTheme:
         await setTheme(connection, darkTheme, profile)
-        print('Current theme is now %s' % darkTheme)
+        print("Current theme is now %s" % darkTheme)
     else:
         await setTheme(connection, lightTheme, profile)
-        print('Current theme is now %s' % lightTheme)
+        print("Current theme is now %s" % lightTheme)
+
 
 async def setTheme(connection, theme, profile):
     newPreset = await iterm2.ColorPreset.async_get(connection, theme)
@@ -48,5 +56,6 @@ async def setTheme(connection, theme, profile):
     for partial in profiles:
         profile = await partial.async_get_full_profile()
         await profile.async_set_color_preset(newPreset)
+
 
 iterm2.run_until_complete(main)
