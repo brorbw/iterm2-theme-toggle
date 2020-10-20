@@ -35,7 +35,7 @@ I have a line like this in my .zshrc but you can invoke the script with hammersp
 
 ```sh
 function toggle-theme() {
-	python3 ~/.config/iterm2-theme-toggle/main.py
+	python3 ~/<install-path>/main.py
 }
 ```
 
