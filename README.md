@@ -14,7 +14,7 @@ To do this go to `Preferences -> General -> Magic -> Toggle "Enable Python API"`
 ### 1. Get the source
 
 ```sh
-git clone [preferred location]
+git clone https://github.com/brorbw/iterm2-theme-toggle.git [preferred location]
 ```
 
 ### 2. Then you will need to install the dependencies.
