@@ -40,6 +40,17 @@ function toggle-theme() {
 }
 ```
 
+If you are experiencing issues like `'iTerm2' module not found`, you can try the following solution
+
+```sh
+function toggle-theme() {
+	BAK_ENV=$PIPENV_PIPFILE
+	PIPENV_PIPFILE=~/Projects/iterm2-theme-changer/Pipfile
+	pipenv run python3 main.py
+	PIPENV_PIPFILE=$BAK_ENV
+}
+```
+
 First time you run the script iTerm2 will prompt you for permissions to you the API. Press always, if you don't want to allow it every time
 
 <img src="https://raw.githubusercontent.com/brorbw/iterm2-theme-toggle/master/pics/image.png"/>
