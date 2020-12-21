@@ -45,7 +45,7 @@ If you are experiencing issues like `'iTerm2' module not found`, you can try the
 ```sh
 function toggle-theme() {
 	BAK_PIPFILE=$PIPENV_PIPFILE
-	PIPENV_PIPFILE=~/Projects/iterm2-theme-changer/Pipfile exec pipenv run python3 ~/Projects/iterm2-theme-changer/main.py &
+	PIPENV_PIPFILE=~/Projects/iterm2-theme-toggle/Pipfile exec pipenv run python3 ~/Projects/iterm2-theme-toggle/main.py &
 	PIPENV_PIPFILE=$BAK_PIPFILE
 	disown
 }
