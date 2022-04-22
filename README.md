@@ -1,4 +1,4 @@
-A simple python script for toggling the theme of iterm2 from where ever you want to invoke it.
+A simple python script for setting the theme of iterm2 from where ever you want to invoke it.
 
 # Install
 
@@ -36,7 +36,7 @@ I have a line like this in my .zshrc but you can invoke the script with hammersp
 
 ```sh
 function toggle-theme() {
-	python3 ~/<install-path>/main.py
+	python3 ~/<install-path>/main.py "theme-name"
 }
 ```
 
@@ -45,7 +45,7 @@ If you are experiencing issues like `'iTerm2' module not found`, you can try the
 ```sh
 function toggle-theme() {
 	BAK_PIPFILE=$PIPENV_PIPFILE
-	PIPENV_PIPFILE=~/Projects/iterm2-theme-toggle/Pipfile exec pipenv run python3 ~/Projects/iterm2-theme-toggle/main.py &
+	(PIPENV_PIPFILE=~/Projects/iterm2-theme-toggle/Pipfile exec pipenv run python3 ~/Projects/iterm2-theme-toggle/main.py "theme-name")
 	PIPENV_PIPFILE=$BAK_PIPFILE
 	disown
 }
@@ -60,8 +60,3 @@ Restart iTerm2 and you are good to go
 # Configuration
 
 If you need to change the themes that it toggles between you just need to set the environment variables
-
-```sh
-export LIGHT_THEME="Nord light"
-export DARK_THEME="Laserwave"
-```
